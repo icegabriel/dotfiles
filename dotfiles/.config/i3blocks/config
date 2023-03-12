@@ -1,0 +1,101 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$SCRIPT_DIR/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# Mpd
+[mediaplayer]
+instance=mpd,%any,spotify
+interval=5
+signal=10
+
+# Night light toogle
+[toggle]
+label=  
+interval=once
+COMMAND_ON=systemctl start redshift --user
+COMMAND_OFF=systemctl stop redshift --user
+COMMAND_STATUS=systemctl status redshift --user
+COLOR_ON=#81a1c1
+COLOR_OFF=#4c566a
+
+# Picom toogle
+[picom]
+label=  
+interval=once
+COLOR_ON=#81a1c1
+COLOR_OFF=#4c566a
+
+# Docker
+[docker]
+interval=10
+
+# Volume indicator
+[volume-pipewire]
+interval=once
+signal=1
+USE_ALSA_NAME=1
+
+# Memory ram usage
+[memory]
+label=󰍛  
+interval=5
+
+# Memory swap usage
+[memory]
+label=󰿡  
+instance=swap
+interval=60
+
+# Disk usage
+[disk]
+label=  
+interval=60
+
+# Network usage
+[bandwidth]
+interval=5
+
+# Time
+[time]
+label=󰥔  
+command=date '+%H:%M:%S'
+interval=1
+
+# Date
+[time]
+label=  
+command=date '+%d/%m/%Y'
+interval=60
+
+# OpenVPN support
+#
+# Support multiple VPN, with colors.
+#[openvpn]
+#interval=20

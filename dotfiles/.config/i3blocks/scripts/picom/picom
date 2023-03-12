@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+on_cmd="systemctl start picom --user"
+off_cmd="systemctl stop picom --user"
+status_cmd="systemctl status picom --user"
+
+if (( ${BLOCK_BUTTON:-0} == 1 )); then
+  eval $status_cmd 2>&1 >/dev/null
+  if (( $? == 0 )); then
+    eval $off_cmd 2>&1 >/dev/null
+  else
+    eval $on_cmd 2>&1 >/dev/null
+  fi
+fi
+
+eval $status_cmd 2>&1 >/dev/null
+if (( $? == 0 )); then
+  COLOR=${COLOR_ON}
+else
+  COLOR=${COLOR_OFF:-#555555}
+fi
+
+echo
+echo
+echo $COLOR
